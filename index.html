@@ -145,7 +145,8 @@
     .section + .section { padding-top: 44px; border-top: 1px solid var(--line); }
     .section:last-child { padding-bottom: 0; }
     .section__title { color: var(--accent-strong); font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 24px; }
-    .section__body { color: var(--muted); max-width: 64ch; }
+    .section__body { color: var(--muted); max-width: 68ch; }
+    .section__body p + p { margin-top: 14px; }
     .subhead {
       display: flex; align-items: baseline; gap: 10px;
       color: var(--faint); font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
@@ -251,7 +252,7 @@
         <p class="profile-card__bio">
           Ph.D. student in the Department of Health Science and Technology at
           <a href="https://www.snu.ac.kr/">Seoul National University</a>,
-          advised by Prof. Jae Young Lim.
+          advised by Prof. Jae-Young Lim.
         </p>
         <div class="profile-links" aria-label="Profile links">
           <a href="mailto:wngml30777@snu.ac.kr">
@@ -271,11 +272,18 @@
 
       <div class="content-flow">
         <section class="section" id="about">
-          <h2 class="section__title">Research Interests</h2>
+          <h2 class="section__title">Hello, I'm Juhee! 👋</h2>
           <div class="section__body">
             <p>
-              I study how digital health technologies and data-driven methods can improve rehabilitation and
-              health outcomes, drawing on physical activity research, large-scale medical data, and AI models.
+              I'm a PhD student at Seoul National University and a researcher in Prof. Jae-Young Lim's research team
+              in the Department of Rehabilitation Medicine at Seoul National University Bundang Hospital.
+            </p>
+            <p>
+              My research explores how digital health technologies and data-driven approaches can improve rehabilitation
+              and health outcomes. I combine physical activity research, large-scale medical data such as nationwide health
+              insurance claims, and AI models, including generative models for clinical time-series data, to better
+              understand the health needs of people with disabilities and older adults and to improve prognostic
+              prediction in rehabilitation.
             </p>
           </div>
           <div class="chips">
@@ -295,7 +303,7 @@
               <div>
                 <h3>Seoul National University</h3>
                 <p>Ph.D. student in Engineering, Department of Health Science and Technology</p>
-                <p class="timeline__meta">Advisor: Prof. Jae Young Lim</p>
+                <p class="timeline__meta">Advisor: Prof. Jae-Young Lim</p>
               </div>
             </article>
             <article class="timeline__item">
@@ -365,8 +373,18 @@
         <section class="section" id="publications">
           <h2 class="section__title">Publications</h2>
 
-          <h3 class="subhead">Journals <span class="count">10</span></h3>
+          <h3 class="subhead">Journals <span class="count">11</span></h3>
           <ol class="publication-list">
+            <li class="publication">
+              <p class="publication__venue">International Journal of Mental Health Promotion · 2026</p>
+              <h3>Effectiveness of a six-week mobile-based stretching intervention on depression and self-efficacy in young adults: A quasi-experimental study</h3>
+              <p><span class="me">Ju-Hee Hwang</span>, Sejin Park, Hyeongseok Seo, Xuantong Jin, Ye Hoon Lee</p>
+              <div class="publication__meta">
+                <span class="tag tag--hl">SSCI</span>
+                <span class="tag">Accepted</span>
+                <span class="tag">First author</span>
+              </div>
+            </li>
             <li class="publication">
               <p class="publication__venue">Journal of Public Health Policy · 2026</p>
               <h3>Service-specific factors associated with unmet healthcare needs among people with disabilities in South Korea</h3>
