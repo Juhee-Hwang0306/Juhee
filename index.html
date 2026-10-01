@@ -122,12 +122,16 @@
     }
     .profile-card__bio { color: var(--muted); font-size: 14px; line-height: 1.65; margin-bottom: 22px; text-align: center; }
     .profile-links { display: grid; gap: 4px; padding-top: 18px; border-top: 1px dashed var(--line); }
-    .profile-links a {
+    .profile-links > a, .profile-links__item {
       display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: center;
       color: var(--muted); font-size: 13.5px; padding: 8px 10px; margin: 0 -10px; border-radius: 12px;
       transition: background 140ms ease;
     }
-    .profile-links a:hover { background: var(--accent-soft); color: var(--ink); }
+    .profile-links > a:hover { background: var(--accent-soft); color: var(--ink); }
+    .profile-links__item { align-items: start; }
+    .profile-links__item a { display: block; color: var(--muted); line-height: 1.5; }
+    .profile-links__item a + a { margin-top: 4px; }
+    .profile-links__item a:hover { color: var(--accent); }
     .profile-links__icon {
       display: grid; place-items: center; width: 34px; height: 34px;
       border-radius: 50%; background: var(--accent-soft); color: var(--accent);
@@ -261,18 +265,16 @@
             </span>
             <span><strong>Email</strong>wngml30777@snu.ac.kr</span>
           </a>
-          <a href="https://www.snu.ac.kr/">
+          <div class="profile-links__item">
             <span class="profile-links__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
             </span>
-            <span><strong>Affiliation</strong>Seoul National University</span>
-          </a>
-          <a href="https://www.snubh.org/">
-            <span class="profile-links__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16"/><path d="M2 21h20"/><path d="M12 7v6M9 10h6"/><path d="M10 21v-4h4v4"/></svg>
+            <span>
+              <strong>Affiliation</strong>
+              <a href="https://www.snu.ac.kr/">Seoul National University</a>
+              <a href="https://www.snubh.org/">Seoul National University Bundang Hospital</a>
             </span>
-            <span><strong>Hospital</strong>Seoul National University Bundang Hospital</span>
-          </a>
+          </div>
         </div>
       </aside>
 
