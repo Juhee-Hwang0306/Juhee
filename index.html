@@ -3,215 +3,532 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Juhee Hwang</title>
+  <title>Juhee Hwang | Seoul National University</title>
+  <meta name="description" content="Ph.D. student at Seoul National University, Department of Health Science and Technology, working on digital healthcare, rehabilitation medicine, and medical big data." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem("theme"); } catch (e) {}
+      var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --ink: #1a2233;
+      --muted: #55617a;
+      --faint: #8b95a9;
+      --line: #dde3ec;
+      --line-soft: #edf1f6;
+      --accent: #1565c0;
+      --accent-strong: #0d47a1;
+      --accent-soft: #e6f0fb;
+      --header-bg: rgba(255, 255, 255, 0.85);
+      --shadow: 0 1px 2px rgba(26, 34, 51, 0.06), 0 12px 32px rgba(26, 34, 51, 0.12);
+      --max-width: 1100px;
+      --font-body: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+      color-scheme: light;
+    }
+    :root[data-theme="dark"] {
+      --bg: #0f1420;
+      --surface: #151c2c;
+      --ink: #e8ecf4;
+      --muted: #a4aec4;
+      --faint: #737e98;
+      --line: #2a3450;
+      --line-soft: #1d2539;
+      --accent: #7fb2f0;
+      --accent-strong: #a9cbf5;
+      --accent-soft: #1b2b48;
+      --header-bg: rgba(15, 20, 32, 0.85);
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.45);
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.7 var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      transition: background 200ms ease, color 200ms ease;
+    }
+    a { color: var(--accent); text-decoration: none; transition: color 140ms ease; }
+    a:hover { color: var(--accent-strong); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    img { display: block; max-width: 100%; }
+    p, h1, h2, h3, h4 { margin: 0; }
+    ::selection { background: var(--accent-soft); color: var(--accent-strong); }
+
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 5;
+      background: var(--header-bg);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .site-header__inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      max-width: var(--max-width); margin: 0 auto; padding: 16px 28px;
+    }
+    .site-brand { color: var(--ink); font-family: var(--font-display); font-size: 19px; font-weight: 600; }
+    .site-brand:hover { color: var(--ink); }
+    .site-nav { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+    .site-nav a {
+      color: var(--muted); font-size: 13.5px; font-weight: 500;
+      padding: 6px 11px; border-radius: 999px;
+      transition: color 140ms ease, background 140ms ease;
+    }
+    .site-nav a:hover { color: var(--ink); background: var(--line-soft); }
+    .theme-toggle {
+      display: grid; place-items: center; width: 32px; height: 32px; margin-left: 6px; padding: 0;
+      border: none; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer;
+    }
+    .theme-toggle:hover { color: var(--ink); background: var(--line-soft); }
+    .theme-toggle svg { width: 17px; height: 17px; }
+    .icon-sun { display: none; }
+    :root[data-theme="dark"] .icon-sun { display: block; }
+    :root[data-theme="dark"] .icon-moon { display: none; }
+
+    /* Layout */
+    main { max-width: var(--max-width); margin: 0 auto; padding: 0 28px 40px; }
+    .page-shell {
+      display: grid; grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+      gap: 56px; align-items: start; padding: 48px 0 56px;
+    }
+
+    /* Profile */
+    .profile-card {
+      position: sticky; top: 96px;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 28px 24px;
+    }
+    .profile-card__photo {
+      width: 148px; height: 148px; object-fit: cover; object-position: center 20%;
+      margin: 0 auto 22px; border-radius: 50%;
+      box-shadow: 0 0 0 5px var(--surface), 0 0 0 7px var(--accent-soft), var(--shadow);
+    }
+    .profile-card h1 { font-family: var(--font-display); font-size: 28px; font-weight: 600; line-height: 1.12; margin-bottom: 8px; text-align: center; }
+    .profile-card__role {
+      display: table; margin: 0 auto 18px; color: var(--accent-strong); background: var(--accent-soft);
+      font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 12px; border-radius: 999px;
+    }
+    .profile-card__bio { color: var(--muted); font-size: 14px; line-height: 1.65; margin-bottom: 22px; text-align: center; }
+    .profile-links { display: grid; gap: 4px; padding-top: 18px; border-top: 1px dashed var(--line); }
+    .profile-links a {
+      display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: center;
+      color: var(--muted); font-size: 13.5px; padding: 8px 10px; margin: 0 -10px; border-radius: 12px;
+      transition: background 140ms ease;
+    }
+    .profile-links a:hover { background: var(--accent-soft); color: var(--ink); }
+    .profile-links__icon {
+      display: grid; place-items: center; width: 34px; height: 34px;
+      border-radius: 50%; background: var(--accent-soft); color: var(--accent);
+    }
+    .profile-links__icon svg { width: 16px; height: 16px; }
+    .profile-links span { min-width: 0; overflow-wrap: anywhere; }
+    .profile-links strong {
+      display: block; color: var(--faint); font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.09em; line-height: 1.2; margin-bottom: 2px; text-transform: uppercase;
+    }
+
+    /* Sections */
+    .content-flow { min-width: 0; }
+    .section { padding: 0 0 52px; }
+    .section + .section { padding-top: 44px; border-top: 1px solid var(--line); }
+    .section:last-child { padding-bottom: 0; }
+    .section__title { color: var(--accent-strong); font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 24px; }
+    .section__body { color: var(--muted); max-width: 64ch; }
+    .subhead {
+      display: flex; align-items: baseline; gap: 10px;
+      color: var(--faint); font-size: 12px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
+      margin: 0 0 14px;
+    }
+    .subhead--spaced { margin-top: 36px; }
+    .subhead .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .chip {
+      font-size: 13px; font-weight: 500; color: var(--accent-strong);
+      background: var(--accent-soft); padding: 5px 12px; border-radius: 999px;
+    }
+
+    /* Timeline */
+    .timeline { display: grid; gap: 26px; }
+    .timeline__item { display: grid; grid-template-columns: 150px 1fr; gap: 24px; }
+    .timeline__date { color: var(--muted); font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; padding-top: 2px; }
+    .timeline h3 { font-size: 15.5px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+    .timeline p { color: var(--muted); font-size: 14px; }
+    .timeline p + p { margin-top: 2px; }
+    .timeline__meta { color: var(--faint); font-size: 13px; }
+    .badge {
+      display: inline-block; font-size: 11.5px; font-weight: 600; color: var(--accent-strong);
+      background: var(--accent-soft); padding: 1px 9px; border-radius: 999px; margin-right: 6px;
+    }
+
+    /* Publications */
+    .publication-list { display: grid; gap: 14px; list-style: none; padding: 0; margin: 0; }
+    .publication {
+      border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 18px 20px;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+    .publication:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: 0 6px 22px rgba(26, 34, 51, 0.08); }
+    .publication__venue { color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; }
+    .publication h3 { font-family: var(--font-display); font-size: 17px; font-weight: 600; line-height: 1.4; margin: 7px 0 8px; }
+    .publication h3 a { color: var(--ink); }
+    .publication h3 a:hover { color: var(--accent-strong); }
+    .publication p { color: var(--muted); font-size: 13.5px; }
+    .publication .me { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    .publication__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 10px; }
+    .tag {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.04em; color: var(--muted);
+      border: 1px solid var(--line); padding: 1px 8px; border-radius: 6px;
+    }
+    .tag--hl { color: var(--accent-strong); border-color: transparent; background: var(--accent-soft); }
+    .doi { font-size: 12.5px; font-weight: 500; }
+
+    /* Awards / scholarships */
+    .recognition-grid { display: grid; gap: 16px; }
+    .recognition-grid article { display: grid; grid-template-columns: 150px 1fr; column-gap: 24px; }
+    .recognition-grid span { grid-column: 1; grid-row: 1 / span 2; color: var(--muted); font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; padding-top: 1px; }
+    .recognition-grid strong { grid-column: 2; grid-row: 1; font-size: 14.5px; font-weight: 600; line-height: 1.45; }
+    .recognition-grid p { grid-column: 2; grid-row: 2; color: var(--muted); font-size: 13.5px; margin-top: 1px; }
+
+    .site-footer { color: var(--faint); font-size: 12.5px; text-align: center; padding: 8px 0 32px; }
+
+    @media (max-width: 880px) {
+      .site-header__inner { flex-direction: column; align-items: flex-start; gap: 6px; padding: 14px 24px; }
+      .site-nav { justify-content: flex-start; margin-left: -11px; }
+      main { padding-left: 24px; padding-right: 24px; }
+      .page-shell { grid-template-columns: 1fr; gap: 40px; padding-top: 32px; }
+      .profile-card { position: static; }
+      .content-flow { border-top: 1px solid var(--line); padding-top: 36px; }
+    }
+    @media (max-width: 560px) {
+      .site-header__inner, main { padding-left: 16px; padding-right: 16px; }
+      .site-nav { flex-wrap: nowrap; gap: 0; margin-left: -8px; width: 100%; }
+      .site-nav a { font-size: 12.5px; padding: 6px 8px; white-space: nowrap; }
+      .theme-toggle { flex-shrink: 0; margin-left: auto; }
+      .timeline__item, .recognition-grid article { grid-template-columns: 1fr; gap: 4px; }
+      .recognition-grid span, .recognition-grid strong, .recognition-grid p { grid-column: 1; grid-row: auto; }
+      .recognition-grid article { padding-bottom: 14px; border-bottom: 1px solid var(--line-soft); }
+      .recognition-grid article:last-child { border-bottom: 0; padding-bottom: 0; }
+      .publication { padding: 16px; }
+      .profile-card { padding: 24px 18px; }
+    }
+  </style>
 </head>
 <body>
-    <div style="text-align: center; margin-top: 50px;">
-      <h1 style="color: #1E88E5; font-size: 36px;">Juhee Hwang</h1>
-      <img src="https://juhee-hwang0306.github.io/Juhee/juhee.png" alt="Juhee Hwang" style="width: 180px; border-radius: 50%; margin-top: 20px;">
-      <p style="font-size: 18px; color: #666; margin-top: 20px;">Ph.D. Student at Seoul National University</p>
-      <p style="font-size: 18px; color: #666;">wngml30777@snu.ac.kr</p>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-brand" href="#home">Juhee Hwang</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#awards">Awards</a>
+        <a href="#publications">Publications</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </nav>
     </div>
+  </header>
 
-<!-- 💡 여기에 CV 내용 추가 -->
-<hr style="border: 0; height: 1px; background: #ccc; margin: 40px 0;">
-<h2>🎓 Education</h2>
-<table style="width: 100%; border-collapse: collapse;">
-  <tr>
-    <td style="width: 30%; vertical-align: top;">Mar 2025 -</td>
-    <td style="width: 70%;">
-      <strong>Seoul National University</strong><br>
-      PhD student in Engineering, Department of Health Science and Technology<br>
-      - Advisor: Prof. Jae Young Lim
-    </td>
-  </tr>
+  <main id="home">
+    <div class="page-shell">
+      <aside class="profile-card" aria-label="Profile">
+        <img class="profile-card__photo" src="juhee.png" alt="Portrait of Juhee Hwang" />
+        <h1>Juhee Hwang</h1>
+        <p class="profile-card__role">Ph.D. Student</p>
+        <p class="profile-card__bio">
+          Ph.D. student in the Department of Health Science and Technology at
+          <a href="https://www.snu.ac.kr/">Seoul National University</a>,
+          advised by Prof. Jae Young Lim.
+        </p>
+        <div class="profile-links" aria-label="Profile links">
+          <a href="mailto:wngml30777@snu.ac.kr">
+            <span class="profile-links__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            </span>
+            <span><strong>Email</strong>wngml30777@snu.ac.kr</span>
+          </a>
+          <a href="https://www.snu.ac.kr/">
+            <span class="profile-links__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+            </span>
+            <span><strong>Affiliation</strong>Seoul National University</span>
+          </a>
+        </div>
+      </aside>
 
-  <tr style="height: 20px;"></tr> <!-- 여백 -->
+      <div class="content-flow">
+        <section class="section" id="about">
+          <h2 class="section__title">Research Interests</h2>
+          <div class="section__body">
+            <p>
+              I study how digital health technologies and data-driven methods can improve rehabilitation and
+              health outcomes, drawing on physical activity research, large-scale medical data, and AI models.
+            </p>
+          </div>
+          <div class="chips">
+            <span class="chip">Digital Healthcare</span>
+            <span class="chip">Rehabilitation Medicine</span>
+            <span class="chip">Physical Activity</span>
+            <span class="chip">Medical Big Data</span>
+            <span class="chip">AI Models</span>
+          </div>
+        </section>
 
-  <tr>
-    <td style="vertical-align: top;">Sep 2023 – Feb 2025</td>
-    <td>
-      <strong>Hankuk University of Foreign Studies</strong><br>
-      M.A. in Global Sport Management<br>
-      <span style="background-color: #1E88E5; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 13px; font-weight: bold;">★ Early Graduation</span> (GPA: 4.5 / 4.5)<br>
-      - Advisor: Prof. Ye Hoon Lee
-    </td>
-  </tr>
+        <section class="section" id="education">
+          <h2 class="section__title">Education</h2>
+          <div class="timeline">
+            <article class="timeline__item">
+              <div class="timeline__date">Mar 2025 – Present</div>
+              <div>
+                <h3>Seoul National University</h3>
+                <p>Ph.D. student in Engineering, Department of Health Science and Technology</p>
+                <p class="timeline__meta">Advisor: Prof. Jae Young Lim</p>
+              </div>
+            </article>
+            <article class="timeline__item">
+              <div class="timeline__date">Sep 2023 – Feb 2025</div>
+              <div>
+                <h3>Hankuk University of Foreign Studies</h3>
+                <p>M.A. in Global Sport Management</p>
+                <p class="timeline__meta"><span class="badge">Early Graduation</span>GPA: 4.5 / 4.5 · Advisor: Prof. Ye Hoon Lee</p>
+              </div>
+            </article>
+            <article class="timeline__item">
+              <div class="timeline__date">Mar 2020 – Aug 2023</div>
+              <div>
+                <h3>Hankuk University of Foreign Studies</h3>
+                <p>B.A. in Global Sport Industry &amp; Public Administration</p>
+                <p class="timeline__meta"><span class="badge">Early Graduation</span>GPA: 4.14 / 4.5</p>
+              </div>
+            </article>
+          </div>
+        </section>
 
-  <tr style="height: 20px;"></tr> <!-- 여백 -->
+        <section class="section" id="awards">
+          <h2 class="section__title">Awards</h2>
+          <div class="recognition-grid">
+            <article>
+              <span>2026</span>
+              <strong>Outstanding Oral Presentation Award</strong>
+              <p>Korean Society of Sarcopenia (21st Autumn Conference)</p>
+            </article>
+            <article>
+              <span>2026</span>
+              <strong>Outstanding Oral Presentation Award</strong>
+              <p>Department of Health Science and Technology Academic Conference, Seoul National University</p>
+            </article>
+            <article>
+              <span>2026</span>
+              <strong>Outstanding Poster Presentation Award</strong>
+              <p>Korean Academy of Geriatric Rehabilitation Medicine (2026 Spring Conference)</p>
+            </article>
+          </div>
 
-  <tr>
-    <td style="vertical-align: top;">Mar 2020 – Aug 2023</td>
-    <td>
-      <strong>Hankuk University of Foreign Studies</strong><br>
-      B.A. in Global Sport Industry & Public Administration<br>
-      <span style="background-color: #1E88E5; color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 13px; font-weight: bold;">★ Early Graduation</span> (GPA: 4.14 / 4.5)
-    </td>
-  </tr>
-</table>
+          <h3 class="subhead subhead--spaced">Scholarships</h3>
+          <div class="recognition-grid">
+            <article>
+              <span>Spring 2024</span>
+              <strong>HUFSAN Scholarship</strong>
+              <p>HUFS · approx. 3,540 USD (₩4,600,000)</p>
+            </article>
+            <article>
+              <span>Fall 2023</span>
+              <strong>HUFSAN Scholarship</strong>
+              <p>HUFS · approx. 3,540 USD (₩4,600,000)</p>
+            </article>
+            <article>
+              <span>Spring 2023</span>
+              <strong>Academic Excellence Scholarship (Dean’s Award – Ranked 1st in Department)</strong>
+              <p>HUFS · Full tuition</p>
+            </article>
+            <article>
+              <span>Fall 2022</span>
+              <strong>Internationalization Scholarship (Overseas Training at the University of Toronto, Canada)</strong>
+              <p>HUFS · approx. 2,300 USD (₩3,000,000)</p>
+            </article>
+          </div>
+        </section>
 
-<hr style="border: 0; height: 1px; background: #ccc; margin: 40px 0;">
-<h2>💡 Research Interests</h2>
-<ul>
-  <li>Digital Healthcare</li>
-  <li>Rehabilitation Medicine</li>
-  <li>Physical Activity</li>
-  <li>Medical Big Data</li>
-  <li>AI Models</li>
-</ul>
+        <section class="section" id="publications">
+          <h2 class="section__title">Publications</h2>
 
-<hr style="border: 0; height: 1px; background: #ccc; margin: 40px 0;">
-<h2>🏆 Awards</h2>
-<ul style="font-size: 16px; line-height: 1.8;">
-  <li>2026, Outstanding Oral Presentation Award, <strong>Korean Society of Sarcopenia</strong> (21st Autumn Conference)</li>
-  <li>2026, Outstanding Oral Presentation Award, Department of Health Science and Technology Academic Conference, <strong>Seoul National University</strong></li>
-  <li>2026, Outstanding Poster Presentation Award, <strong>Korean Academy of Geriatric Rehabilitation Medicine</strong> (2026 Spring Conference)</li>
-</ul>
+          <h3 class="subhead">Journals <span class="count">10</span></h3>
+          <ol class="publication-list">
+            <li class="publication">
+              <p class="publication__venue">Journal of Public Health Policy · 2026</p>
+              <h3>Service-specific factors associated with unmet healthcare needs among people with disabilities in South Korea</h3>
+              <p><span class="me">Ju-Hee Hwang</span>, Hye-Jin Kim, Ryeojin Lee, Hyun-Jo Kim, Hee-Sung Kim, Jae-Young Lim</p>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">arXiv preprint · 2026</p>
+              <h3><a href="https://arxiv.org/abs/2605.25439">Missing Pattern Recognized Diffusion Imputation Model for Missing Not At Random</a></h3>
+              <p>Gyuwon Sim, Sumin Lee, Heesun Bae, Byeonghu Na, Doyun Kwon, <span class="me">Ju-Hee Hwang</span>, Jae-Young Lim, Il-Chul Moon</p>
+              <div class="publication__meta">
+                <a class="doi" href="https://arxiv.org/abs/2605.25439">arXiv:2605.25439</a>
+              </div>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">Ewha Medical Journal · 2025</p>
+              <h3><a href="https://doi.org/10.12771/emj.2025.00843">Aging with disability in polio survivors: a narrative review</a></h3>
+              <p><span class="me">Ju-Hee Hwang</span>, Ga-Yang Shim</p>
+              <div class="publication__meta">
+                <span class="tag">48(4), e58</span>
+                <a class="doi" href="https://doi.org/10.12771/emj.2025.00843">doi:10.12771/emj.2025.00843</a>
+              </div>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">Iranian Journal of Public Health · 2025</p>
+              <h3><a href="https://doi.org/10.18502/ijph.v54i7.19155">Promoting Stretching Engagement through Health Belief Model-Based Nudges: The Effectiveness of Threat vs. Benefit-Based Nudge Messages</a></h3>
+              <p>Ye Hoon Lee, Hyungseok Seo, Sejin Park, <span class="me">Juhee Hwang</span>*</p>
+              <div class="publication__meta">
+                <span class="tag tag--hl">SCIE</span>
+                <span class="tag">Corresponding author</span>
+                <span class="tag">54(7), 1482–1492</span>
+                <a class="doi" href="https://doi.org/10.18502/ijph.v54i7.19155">doi:10.18502/ijph.v54i7.19155</a>
+              </div>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">International Journal of Mental Health Promotion · 2025</p>
+              <h3><a href="https://doi.org/10.32604/ijmhp.2025.060685">Walking for mental health: Effects of mobile-based walking on stress and affectivity in college students</a></h3>
+              <p>Ye Hoon Lee, <span class="me">Juhee Hwang</span>*</p>
+              <div class="publication__meta">
+                <span class="tag tag--hl">SSCI</span>
+                <span class="tag">Corresponding author</span>
+                <a class="doi" href="https://doi.org/10.32604/ijmhp.2025.060685">doi:10.32604/ijmhp.2025.060685</a>
+              </div>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">JMIR mHealth and uHealth · 2024</p>
+              <h3><a href="https://doi.org/10.2196/55578">Effectiveness of mobile-based progressive and fixed physical activity on depression, stress, anxiety, and quality of life Outcomes Among Adults in South Korea: Randomized Controlled Trial</a></h3>
+              <p>Ye Hoon Lee, Hyungsook Kim, <span class="me">Juhee Hwang</span>, Sihyeon Noh</p>
+              <div class="publication__meta">
+                <span class="tag tag--hl">SCI(E)</span>
+                <span class="tag tag--hl">IF 5.4 · Top 10%</span>
+                <span class="tag">12, Article 55578</span>
+                <a class="doi" href="https://doi.org/10.2196/55578">doi:10.2196/55578</a>
+              </div>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">Scientific Reports · 2024</p>
+              <h3><a href="https://doi.org/10.1038/s41598-024-63637-0">Mobile-based mindfulness meditation intervention’s impact on mental health among young male judo athletes</a></h3>
+              <p>Ye Hoon Lee, Weisheng Chiu, <span class="me">Juhee Hwang</span>, Sihyeon Noh</p>
+              <div class="publication__meta">
+                <span class="tag tag--hl">SCI(E)</span>
+                <span class="tag">14, Article 12691</span>
+                <a class="doi" href="https://doi.org/10.1038/s41598-024-63637-0">doi:10.1038/s41598-024-63637-0</a>
+              </div>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">Asian Journal of Physical Education and Sport Science · 2024</p>
+              <h3>IPA (Importance-Performance Analysis) for Promoting eSports for People with Disabilities</h3>
+              <p><span class="me">Juhee Hwang</span>, Ye Hoon Lee, Wonsang Shin, Dawon Park</p>
+              <div class="publication__meta">
+                <span class="tag tag--hl">KCI</span>
+                <span class="tag">12, 5</span>
+              </div>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">Journal of the Korean Convergence Science Society · 2023</p>
+              <h3>Curriculum Proposal for the Sustainable Development of eSports: A Comparative Study between South Korea and the United States</h3>
+              <p>Seonghee Park, Hyungseok Seo, <span class="me">Juhee Hwang</span></p>
+              <div class="publication__meta">
+                <span class="tag tag--hl">KCI</span>
+                <span class="tag">12(12), 33–49</span>
+              </div>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">Research in Dance and Physical Activity · 2023</p>
+              <h3>Exploring the Current Status of e-sports Participation among People with Disabilities in South Korea</h3>
+              <p>Ye Hoon Lee, Wonsang Shin, Jaeyeong Park, Sihyeon Noh, <span class="me">Juhee Hwang</span></p>
+              <div class="publication__meta">
+                <span class="tag tag--hl">KCI</span>
+                <span class="tag">7(2), 51–69</span>
+              </div>
+            </li>
+          </ol>
 
-<hr style="border: 0; height: 1px; background: #ccc; margin: 40px 0;">
-<h2>📚 Publications</h2>
+          <h3 class="subhead subhead--spaced">Conferences <span class="count">10</span></h3>
+          <ol class="publication-list">
+            <li class="publication">
+              <p class="publication__venue">ISPRM · 2026</p>
+              <h3>Healthcare Utilization Among Aging Polio Survivors in Korea: A Nationwide Claims-Based Analysis</h3>
+              <p>Ga-Yang Shim, Eunji Lee, Chan-Bun Park, <span class="me">Ju-Hee Hwang</span>, Jae-Young Lim</p>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">ISPRM · 2026</p>
+              <h3>Aging with Disability in Korean Polio Survivors: Trends in Function and Economic Status, 2008–2023</h3>
+              <p><span class="me">Ju-Hee Hwang</span>, Ga-Yang Shim, Jae-Young Lim</p>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">IOF Regional Tokyo ’25 – 9th Asia-Pacific Bone Health Conference · 2025</p>
+              <h3>Generative model based time-series imputation for prognostic prediction in hip fracture patients</h3>
+              <p><span class="me">Ju-Hee Hwang</span>, Seung Kyu Lim, Boram Kim, Il-chul Moon, Jae-Young Lim</p>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">KARM Autumn International Conference · 2025</p>
+              <h3>Generative Model-Based Time-Series Imputation for Prognostic Prediction in Hip Fracture Patients</h3>
+              <p><span class="me">Ju-Hee Hwang</span>, Gyuwon Sim, Heesun Bae, Sumin Lee, Wonhyeok Choi, Il-Chul Moon, Jae-Young Lim</p>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">KARM Autumn International Conference · 2025</p>
+              <h3>Differentiating Unmet Needs by Type of Healthcare Services Among People with Disabilities</h3>
+              <p><span class="me">Juhee Hwang</span>, HJ Kim, R Lee, HS Kim, HJ Kim, Jae-Young Lim</p>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">Korean Institute of Industrial Engineers (KIIE) · 2025</p>
+              <h3>Time-series imputation for incomplete hip fracture data using generative model</h3>
+              <p>Gyuwon Sim, Wonhyeok Choi, Sumin Lee, <span class="me">Juhee Hwang</span>, Ilchul Moon, Jae-Young Lim</p>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">KARM Spring Conference · 2025</p>
+              <h3>Impact of Health Belief Model on Healthcare Use &amp; Satisfaction Among Individuals with Disabilities</h3>
+              <p>JY Lim, HJ Kim, R Lee, HS Kim, HJ Kim, <span class="me">Juhee Hwang</span></p>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">Asian Association for Sport Management · 2024</p>
+              <h3>Synergistic Effects of Mobile-based Walking and Self-Affirmation on College Students’ Mental Health</h3>
+              <p>YH Lee, H Kim, <span class="me">Juhee Hwang</span></p>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">Asia Conference on Kinesiology and Sport Science · 2024</p>
+              <h3>Effects of an 8-Week Mobile-Based Walking Program on Depression, Perceived Stress, and Affectivity</h3>
+              <p>YH Lee, H Kim, <span class="me">Juhee Hwang</span></p>
+            </li>
+            <li class="publication">
+              <p class="publication__venue">Korean Alliance for Health, Physical Education, Recreation, and Dance · 2023</p>
+              <h3>A Mobile-Based Physical Activity Program and its Impacts on Positive and Negative Mental Health</h3>
+              <p>YH Lee, <span class="me">Juhee Hwang</span></p>
+            </li>
+          </ol>
+          <p class="publication__meta" style="color: var(--faint); font-size: 12.5px;">* Corresponding author</p>
+        </section>
 
-<h3>Journals</h3>
-<ol reversed>
-  <li>
-    <strong>Service-specific factors associated with unmet healthcare needs among people with disabilities in South Korea</strong><br>
-    <strong><u>Ju-Hee Hwang</u></strong>, Hye-Jin Kim, Ryeojin Lee, Hyun-Jo Kim, Hee-Sung Kim, Jae-Young Lim<br>
-    <em>Journal of Public Health Policy</em> (2026)
-  </li><br>
+      </div>
+    </div>
+  </main>
 
-  <li>
-    <strong>Missing Pattern Recognized Diffusion Imputation Model for Missing Not At Random</strong><br>
-    Gyuwon Sim, Sumin Lee, Heesun Bae, Byeonghu Na, Doyun Kwon, <strong><u>Ju-Hee Hwang</u></strong>, Jae-Young Lim, Il-Chul Moon<br>
-    <em>arXiv preprint</em> arXiv:2605.25439.
-    <a href="https://arxiv.org/abs/2605.25439" target="_blank">https://arxiv.org/abs/2605.25439</a> (2026)
-  </li><br>
+  <footer class="site-footer">© 2026 Juhee Hwang</footer>
 
-  <li>
-    <strong>Aging with disability in polio survivors: a narrative review</strong><br>
-    <strong><u>Ju-Hee Hwang</u></strong>, Ga-Yang Shim<br>
-    <em>Ewha Medical Journal</em>, 48(4), e58.
-    <a href="https://doi.org/10.12771/emj.2025.00843" target="_blank">https://doi.org/10.12771/emj.2025.00843</a> (2025)
-  </li><br>
-
-  <li>
-        <strong>Promoting Stretching Engagement through Health Belief Model-Based Nudges: The Effectiveness of Threat vs. Benefit-Based Nudge Messages</strong><br>
-        Ye Hoon Lee, Hyungseok Seo, Sejin Park, <strong><u>Juhee Hwang (corresponding author)</u></strong><br>
-        <em>Iranian Journal of Public Health</em>, 54(7), 1482–1492.
-        <a href="https://doi.org/10.18502/ijph.v54i7.19155" target="_blank">https://doi.org/10.18502/ijph.v54i7.19155</a> [SCIE] (2025)
-      </li><br>
-
-  <li>
-    <strong>Walking for mental health: Effects of mobile-based walking on stress and affectivity in college students</strong><br>
-    Ye Hoon Lee, <strong><u>Juhee Hwang (corresponding author)</u></strong><br>
-    <em>International Journal of Mental Health Promotion</em><br>
-    <a href="https://doi.org/10.32604/ijmhp.2025.060685" target="_blank">https://doi.org/10.32604/ijmhp.2025.060685</a> [SSCI] (2025)
-  </li><br>
-
-  <li>
-    <strong>Effectiveness of mobile-based progressive and fixed physical activity on depression, stress, anxiety, and quality of life Outcomes Among Adults in South Korea: Randomized Controlled Trial</strong><br>
-    Ye Hoon Lee, Hyungsook Kim, <strong><u>Juhee Hwang</u></strong>, Sihyeon Noh<br>
-    <em>JMIR mHealth and uHealth</em>, 12, Article 55578.
-    <a href="https://doi.org/10.2196/55578" target="_blank">https://doi.org/10.2196/55578</a> [SCI(E)]<br>
-    <strong>(Impact Factor: 5.4, Top 10% in Health Care Sciences & Services and Medical Informatics)</strong> (2024)
-  </li><br>
-
-  <li>
-    <strong>Mobile-based mindfulness meditation intervention’s impact on mental health among young male judo athletes</strong><br>
-    Ye Hoon Lee, Weisheng Chiu, <strong><u>Juhee Hwang</u></strong>, Sihyeon Noh<br>
-    <em>Scientific Reports</em>, 14, Article 12691
-    <a href="https://doi.org/10.1038/s41598-024-63637-0" target="_blank">https://doi.org/10.1038/s41598-024-63637-0</a> [SCI(E)] (2024)
-  </li><br>
-
-  <li>
-    <strong>IPA (Importance-Performance Analysis) for Promoting eSports for People with Disabilities</strong><br>
-    <strong><u>Juhee Hwang</u></strong>, Ye Hoon Lee, Wonsang Shin, Dawon Park<br>
-    <em>Asian Journal of Physical Education and Sport Science (AJPESS)</em>, 12, 5. [KCI] (2024)
-  </li><br>
-
-  <li>
-    <strong>Curriculum Proposal for the Sustainable Development of eSports: A Comparative Study between South Korea and the United States</strong><br>
-    Seonghee Park, Hyungseok Seo, <strong><u>Juhee Hwang</u></strong><br>
-    <em>Journal of the Korean Convergence Science Society</em>, 12(12), 33–49. [KCI] (2023)
-  </li><br>
-
-  <li>
-    <strong>Exploring the Current Status of e-sports Participation among People with Disabilities in South Korea</strong><br>
-    Ye Hoon Lee, Wonsang Shin, Jaeyeong Park, Sihyeon Noh, <strong><u>Juhee Hwang</u></strong><br>
-    <em>Research in Dance and Physical Activity</em>, 7(2), 51–69. [KCI] (2023)
-  </li><br>
-</ol>
-
-<h3>Conferences</h3>
-<ol reversed>
-    <li>
-        <strong>Healthcare Utilization Among Aging Polio Survivors in Korea: A Nationwide Claims-Based Analysis</strong><br>
-        Ga-Yang Shim, Eunji Lee, Chan-Bun Park, <strong><u>Ju-Hee Hwang</u></strong>, Jae-Young Lim<br>
-        <em>International Society of Physical and Rehabilitation Medicine (ISPRM)</em> (2026)
-      </li><br>
-
-    <li>
-        <strong>Aging with Disability in Korean Polio Survivors: Trends in Function and Economic Status, 2008–2023</strong><br>
-        <strong><u>Ju-Hee Hwang</u></strong>, Ga-Yang Shim, Jae-Young Lim<br>
-        <em>International Society of Physical and Rehabilitation Medicine (ISPRM)</em> (2026)
-      </li><br>
-
-  <li>
-    <strong>Generative model based time-series imputation for prognostic prediction in hip fracture patients</strong><br>
-    <strong><u>Ju-Hee Hwang</u></strong>, Seung Kyu Lim, Boram Kim, Il-chul Moon, Jae-Young Lim<br>
-    <em>IOF Regional Tokyo ’25 – 9th Asia-Pacific Bone Health Conference</em> (2025)
-  </li><br>
-
-  <li>
-    <strong>Generative Model-Based Time-Series Imputation for Prognostic Prediction in Hip Fracture Patients</strong><br>
-    <strong><u>Ju-Hee Hwang</u></strong>, Gyuwon Sim, Heesun Bae, Sumin Lee, Wonhyeok Choi, Il-Chul Moon, Jae-Young Lim<br>
-    <em>The Korean Academy of Rehabilitation Medicine (KARM) Autumn International Conference</em> (2025)
-  </li><br>
-
-  <li>
-    <strong>Differentiating Unmet Needs by Type of Healthcare Services Among People with Disabilities</strong><br>
-    <strong><u>Juhee Hwang</u></strong>, HJ Kim, R Lee, HS Kim, HJ Kim, Jae-Young Lim<br>
-    <em>The Korean Academy of Rehabilitation Medicine (KARM) Autumn International Conference</em> (2025)
-  </li><br>
-
-  <li>
-    <strong>Time-series imputation for incomplete hip fracture data using generative model</strong><br>
-    Gyuwon Sim, Wonhyeok Choi, Sumin Lee, <strong><u>Juhee Hwang</u></strong>, Ilchul Moon, Jae-Young Lim<br>
-    <em>Korean Institute of Industrial Engineers (KIIE)</em> (2025)
-  </li><br>
-
-  <li>
-    <strong>Impact of Health Belief Model on Healthcare Use & Satisfaction Among Individuals with Disabilities</strong><br>
-    JY Lim, HJ Kim, R Lee, HS Kim, HJ Kim, <strong><u>Juhee Hwang</u></strong><br>
-    <em>The Korean Academy of Rehabilitation Medicine Spring Conference</em> (2025)
-  </li><br>
-
-  <li>
-    <strong>Synergistic Effects of Mobile-based Walking and Self-Affirmation on College Students’ Mental Health</strong><br>
-    YH Lee, H Kim, <strong><u>Juhee Hwang</u></strong><br>
-    <em>Asian Association for Sport Management</em> (2024)
-  </li><br>
-
-  <li>
-    <strong>Effects of an 8-Week Mobile-Based Walking Program on Depression, Perceived Stress, and Affectivity</strong><br>
-    YH Lee, H Kim, <strong><u>Juhee Hwang</u></strong><br>
-    <em>Asia Conference on Kinesiology and Sport Science</em> (2024)
-  </li><br>
-
-  <li>
-    <strong>A Mobile-Based Physical Activity Program and its Impacts on Positive and Negative Mental Health</strong><br>
-    YH Lee, <strong><u>Juhee Hwang</u></strong><br>
-    <em>Korean Alliance for Health, Physical Education, Recreation, and Dance</em> (2023)
-  </li>
-</ol>
-
-<hr style="border: none; height: 1px; background-color: #e0e0e0; margin: 32px 0;">
-
-<h2>🎖️ Scholarships</h2>
-<ul style="font-size: 16px; line-height: 1.8;">
-  <li><strong>Spring 2024</strong>, HUFSAN Scholarship, HUFS (Approximately 3,540 USD (₩4,600,000 KRW))</li>
-  <li><strong>Fall 2023</strong>, HUFSAN Scholarship, HUFS (Approximately 3,540 USD (₩4,600,000 KRW))</li>
-  <li><strong>Spring 2023</strong>, Academic Excellence Scholarship (Dean’s Award – Ranked 1st in Department), HUFS (Full tuition covered)</li>
-  <li><strong>Fall 2022</strong>, Internationalization Scholarship (Overseas Training at the University of Toronto, Canada), HUFS (Approximately 2,300 USD (₩3,000,000 KRW))</li>
-</ul>
+  <script>
+    document.querySelector(".theme-toggle").addEventListener("click", function () {
+      var root = document.documentElement;
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+    });
+  </script>
 </body>
 </html>
